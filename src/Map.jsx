@@ -208,14 +208,15 @@ const SimpleMap = () => {
   return (
     <div className='container'>
   {!isTracking ? (
-        <div>
+        <div className='form-container'>
           <input
             type="text"
             placeholder="Enter your username"
+            className='form-search-container'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button onClick={handleStartTracking}>Start Tracking</button>
+          <button className='mapsubmit' onClick={handleStartTracking}>Start Tracking</button>
         </div>
       ) : (
         <>

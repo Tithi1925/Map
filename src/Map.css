@@ -1,105 +1,114 @@
 .container {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-  }
-  
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.form-container {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: 90%;
+  max-width: 600px;
+  z-index: 1000;
+}
+
+.form-search-container {
+  flex: 1;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  box-sizing: border-box;
+}
+
+.mapsubmit {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 0 4px 4px 0;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.mapsubmit:hover {
+  background-color: #00b336;
+}
+
+.map {
+  height: calc(100% - 20px);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #ccc;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background-color: #e0e0e0;
+}
+
+.leaflet-control-zoom {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+
   .form-container {
-    position: absolute;
-    top: 10px;
+    flex-direction: column;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    width: 90%;
-    max-width: 600px;
-    z-index: 1000;
   }
-  
-  .maptext {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    box-sizing: border-box;
+
+  .form-search-container, .mapsubmit {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 15px;
+    border-radius: 4px;
   }
-  
+
   .mapsubmit {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 0 4px 4px 0;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+    margin-bottom: 0;
   }
-  
+
   .mapsubmit:hover {
     background-color: #00b336;
   }
-  
+
+  .leaflet-control-zoom {
+    flex-direction: column;
+    margin-top: 10px;
+    left: 2px;
+    top: 100px;
+  }
+
   .leaflet-control-zoom-in,
   .leaflet-control-zoom-out {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #ccc;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
   }
-  
-  .leaflet-control-zoom-in:hover,
-  .leaflet-control-zoom-out:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .leaflet-control-zoom {
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .form-container {
-      flex-direction: column;
-      top: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  
-    .maptext, .mapsubmit {
-      width: 100%;
-      margin-bottom: 5px;
-      border-radius: 4px;
-    }
-  
-    .mapsubmit {
-      margin-bottom: 0;
-    }
-  
-    .mapsubmit:hover {
-      background-color: #00b336;
-    }
-  
-    .leaflet-control-zoom {
-      flex-direction: column;
-      margin-top: 10px;
-      left: 2px;
-      top: 100px;
-    }
-  
-    .leaflet-control-zoom-in,
-    .leaflet-control-zoom-out {
-      width: 30px;
-      height: 30px;
-      font-size: 16px;
-      line-height: 30px;
-    }
-  
-    .map {
-      height: 300px;
-    }
-  }
-  
+
+  /* .map {
+    height: 300px;
+  } */
+}

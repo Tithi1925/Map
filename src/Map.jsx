@@ -55,8 +55,8 @@ const ChangeMapCenter = ({ center, shouldCenter, setShouldCenter }) => {
 };
 
 const SimpleMap = () => {
-  const start = [23.013329578801514, 72.5042041101487]; // Starting point
-  const end = [23.07464673636118, 72.62394966412546]; // Ending point
+  const start = [22.979954553154236, 72.50086017342043]; // Starting point
+  const end = [23.243531133149922, 72.49322461562474]; // Ending point
   const [currentLocation, setCurrentLocation] = useState(null); // Initial current location
   const [mapCenter, setMapCenter] = useState(start); // Initial map center
   const [shouldCenter, setShouldCenter] = useState(false); // State to track if we should center the map

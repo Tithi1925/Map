@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, useMap, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
@@ -7,7 +7,7 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -70,6 +70,7 @@ const SimpleMap = () => {
   const [isTracking, setIsTracking] = useState(false); // State to track if we are tracking the user
   const [watchId, setWatchId] = useState(null); // State to track geolocation watch ID
   const provider = new OpenStreetMapProvider();
+  const lastLocationRef = useRef(null);
 
   const firebaseConfig = {
     apiKey: "AIzaSyDeouxYk3mphLe01gwWAKhuRWQUW4Q7j7U",
@@ -139,29 +140,53 @@ const SimpleMap = () => {
   }, [currentLocation]);
 
   const startGeolocationWatch = () => {
-    if (username && "geolocation" in navigator) {
-      const id = navigator.geolocation.watchPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setCurrentLocation([latitude, longitude]);
-          setMapCenter([latitude, longitude]); // Center map on the current location
-
-          // Update Firebase with the new location
-          if (username) {
-            set(ref(database, 'users/' + username), {
-              lat: latitude,
-              lon: longitude
-            });
-          }
-        },
-        (error) => {
-          console.error('Error getting current position:', error);
-        }
-      );
-
-      setWatchId(id); // Store the watch ID
-    }
-  };
+            if (username && "geolocation" in navigator) {
+              const id = navigator.geolocation.watchPosition(
+                (position) => {
+                  const { latitude, longitude } = position.coords;
+        
+                  // Check if the current location is different from the last stored location
+                  if (
+                    lastLocationRef.current === null ||
+                    lastLocationRef.current.latitude !== latitude ||
+                    lastLocationRef.current.longitude !== longitude
+                  ) {
+                    // Update state with new location
+                    setCurrentLocation([latitude, longitude]);
+                    setMapCenter([latitude, longitude]);
+        
+                    // Update Firebase with the new location
+                    const usersRef = ref(database, 'users/' + username);
+                    push(usersRef, {
+                      lat: latitude,
+                      lon: longitude
+                    });
+        
+                    // Update last location reference
+                    lastLocationRef.current = { latitude, longitude };
+                  }
+                },
+                (error) => {
+                  console.error('Error getting current position:', error);
+                }
+              );
+        
+              setWatchId(id); // Store the watch ID
+            }
+          };
+        
+          useEffect(() => {
+            // Start watching geolocation when component mounts
+            startGeolocationWatch();
+        
+            // Cleanup function to clear watch when component unmounts
+            return () => {
+              if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+              }
+            };
+          }, [])
+    
 
   const stopGeolocationWatch = () => {
     if (watchId !== null) {
@@ -259,3 +284,4 @@ const SimpleMap = () => {
 };
 
 export default SimpleMap;
+

@@ -1,6 +1,5 @@
 import { Route, Routes} from "react-router-dom";
 import Login from "./Login";
-import ParticularJob from "./ParticularJob";
 import Courierdata from "./Courierdata";
 import Map from "./Map";
 import { ToastContainer } from "react-toastify";

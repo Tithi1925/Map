@@ -1,19 +1,97 @@
 .container {
-  position: relative;
   height: 100vh;
+  max-width: fit-content;
+}
+.modalopen{
+  position: fixed;
+  margin-top: 150px;
+  float:inline-end;
+  width: fit-content;
+  font-size: 15px;
+  z-index: 1000;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9000;
+}
+
+.modal-content {
+  background-color: white;
+  /* padding: 20px; */
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.modal-content .info-section {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 10px; /* Adjust spacing between sections */
+}
+
+.modal-content .info-section h5 {
+  margin-right: 10px;
+  margin-bottom: 0; /* Ensures the label is aligned properly */
+  white-space: nowrap; /* Prevents the label from wrapping */
+}
+
+.modal-content .info-section p {
+  margin: 0; /* Ensures the paragraph is aligned properly */
+}
+
+.modal-boxes{
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+
+html, body {
   width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
   position: absolute;
   top: 10px;
-  left: 50%;
+  left: 50%; 
   transform: translateX(-50%);
-  display: flex;
   width: 90%;
   max-width: 600px;
-  z-index: 1000;
+  z-index: 2000;
 }
+
 
 .form-search-container {
   flex: 1;
@@ -22,20 +100,114 @@
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
   box-sizing: border-box;
+  outline: none;
+}
+.table td, .table th {
+  padding: 1rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
 }
 
 .mapsubmit {
   padding: 10px;
-  font-size: 16px;
+  font-size: 18px;
   border: 1px solid #ccc;
   border-radius: 0 4px 4px 0;
   background-color: #007bff;
   color: white;
-  cursor: pointer;
+  /* cursor: pointer; */
+  outline: none;
+  display: flex;
+  align-items: center;
 }
 
 .mapsubmit:hover {
-  background-color: #00b336;
+  cursor: pointer;
+  background-color: #0056b3;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.card {
+  width: 100%;
+}
+
+.submitbutton {
+  height: 40px;
+  width: 200px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.forms-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 120px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.form-card {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  height: fit-content;
+  min-width: 300px; /* Ensure a minimum width */
+  box-sizing: border-box;
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.form-card div {
+  margin-bottom: 15px;
+}
+
+.form-card label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-card input[type="text"],
+.form-card select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inline-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline-inputs > div {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.inline-inputs > div:last-child {
+  margin-right: 0;
 }
 
 .map {
@@ -44,6 +216,17 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.map.minimized {
+  height: 200px; /* Height for minimized view */
+  width: 300px;  /* Width for minimized view */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border: 2px solid #ccc;
+  border-radius: 10px;
 }
 
 .leaflet-control-zoom-in,
@@ -58,6 +241,12 @@
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+  margin-top: 60px !important;
+
 }
 
 .leaflet-control-zoom-in:hover,
@@ -65,30 +254,67 @@
   background-color: #e0e0e0;
 }
 
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  margin-top: 60px;
+}
+
 .leaflet-control-zoom {
-  margin-top: 10px;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal-heading {
+    font-size: 16px;
+  }
+
+  .info-section h5 {
+    font-size: 14px;
+  }
+
+  .info-section p {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 768px) {
-
   .form-container {
     flex-direction: column;
-    top: 5px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
   }
-
-  .form-search-container, .mapsubmit {
+  .form-search-container{
     width: 100%;
     margin-bottom: 5px;
-    font-size: 15px;
+    font-size: 13px;
     border-radius: 4px;
+    margin-top: 20px;
+  }
+  .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+    margin-top: 50px !important; 
   }
 
   .mapsubmit {
     margin-bottom: 0;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px 0; Adjust the padding as needed */
   }
-
+  
   .mapsubmit:hover {
     background-color: #00b336;
   }
@@ -107,8 +333,43 @@
     font-size: 16px;
     line-height: 30px;
   }
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+  }
 
-  /* .map {
-    height: 300px;
-  } */
+  .modalopen{
+    position: fixed;
+    margin-top: 600px;
+    float:inline-end;
+    width: fit-content;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .modal-boxes{
+    width: fit-content;
+    padding: 20px;
+  }
+
+  /* Removing the inline-inputs class on mobile */
+  .inline-inputs {
+    flex-direction: column;
+  }
+
+  .inline-inputs > div {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .forms-wrapper {
+    flex-direction: column; /* Stack form cards vertically on mobile */
+  }
 }

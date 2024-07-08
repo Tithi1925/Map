@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Tithi1925.github.io",
   "name": "map",
   "version": "0.1.0",
   "private": true,
@@ -7,19 +8,33 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "firebase": "^10.12.2",
+    "gh-pages": "^6.1.1",
+    "json-server": "^1.0.0-beta.1",
+    "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^4.0.0",
+    "mongoose": "^8.4.3",
+    "nodemon": "^3.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.0",
+    "react-icons-kit": "^2.0.0",
     "react-leaflet": "^4.2.1",
+    "react-native-background-geolocation": "^4.16.3",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
+    "react-secure-storage": "^1.3.2",
     "react-toastify": "^10.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,5 +57,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

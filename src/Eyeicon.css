@@ -1,0 +1,9 @@
+.eyeicon {
+    font-size: 20px;
+    position: absolute;
+    top: 60%;
+    right: 20px;
+    transform: translateY(-65%);
+    cursor: pointer;
+  }
+  

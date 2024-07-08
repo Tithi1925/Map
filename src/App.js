@@ -1,15 +1,22 @@
 import { Route, Routes} from "react-router-dom";
-import SimpleMap from "./Map";
+import Login from "./Login";
+import ParticularJob from "./ParticularJob";
+import Courierdata from "./Courierdata";
+import Map from "./Map";
+import { ToastContainer } from "react-toastify";
 
-        
 
 
 function App() {
   return (
     <div className="App">
+    <ToastContainer></ToastContainer>
     <Routes>
-    <Route path="/map" element={<SimpleMap/>}></Route>
-    </Routes>
+    <Route path="/login" element={<Login/>}></Route>
+    <Route path="/courierdata" element={<Courierdata/>}></Route>
+    <Route path="/assignjob" element={<ParticularJob/>}></Route>
+    <Route path="/map" element={<Map/>}></Route>
+    </Routes>  
     </div>
 
   );
